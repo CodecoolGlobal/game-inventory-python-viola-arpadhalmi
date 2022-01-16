@@ -1,4 +1,3 @@
-from operator import inv
 import csv
 
 
@@ -37,14 +36,14 @@ def print_table(inventory, order=None):
     HEADER = 'item name | count'
     print(f'{DIVIDER}\n{HEADER}\n{DIVIDER}')
     if order == 'count,asc':
-        for item, count in sorted(inventory).reverse():
-            print(f'{item} |\t{count}')
+        for item, count in sorted(inventory.items(), key=lambda x: x[1]):
+            print(f"{item:>9} | {count:5d}")
     elif order == 'count,desc':
-        for item, count in inventory.sort:
-            print(f'{item} |\t{count}')
+        for item, count in sorted(inventory.items(), key=lambda x: x[1], reverse=True):
+            print(f"{item:>9} | {count:5d}")
     else:
         for item, count in inventory.items():
-            print(f'{item} |\t{count}')
+            print(f"{item:>9} | {count:5d}")
     print(f'{DIVIDER}')
 
 
