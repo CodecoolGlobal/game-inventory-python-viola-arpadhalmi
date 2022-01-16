@@ -4,12 +4,16 @@
 # according to the requirements.
 
 
+from operator import inv
+
+
 def display_inventory(inventory):
     """Display the contents of the inventory in a simple way."""
     if inventory == '':
         return None
     else:
-        print(inventory)
+        for item, count in inventory.items():
+            print(f'{item}: {count}')
 
 
 def add_to_inventory(inventory, added_items):
@@ -36,7 +40,16 @@ def print_table(inventory, order=None):
     DIVIDER = '-----------------'
     HEADER = 'item name | count'
     print(f'{DIVIDER}\n{HEADER}\n{DIVIDER}')
-    
+    if order == 'count,asc':
+        for item, count in sorted(inventory).reverse():
+            print(f'{item}\t|\t{count}')
+    elif order == 'count,desc':
+        for item, count in sorted(inventory.items()):
+            print(f'{item}\t|\t{count}')
+    else:
+        for item, count in inventory.items():
+            print(f'{item}\t|\t{count}')
+    print(f'{DIVIDER}')
 
 
 def import_inventory(inventory, filename):
