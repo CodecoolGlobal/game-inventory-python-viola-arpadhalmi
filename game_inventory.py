@@ -6,17 +6,26 @@
 
 def display_inventory(inventory):
     """Display the contents of the inventory in a simple way."""
-    pass
+    if inventory == '':
+        return None
+    else:
+        print(inventory)
 
 
 def add_to_inventory(inventory, added_items):
     """Add to the inventory dictionary a list of items from added_items."""
-    pass
+    if added_items not in inventory:
+        inventory[added_items] = 1
+    else:
+        inventory[added_items] += 1
 
 
 def remove_from_inventory(inventory, removed_items):
     """Remove from the inventory dictionary a list of items from removed_items."""
-    pass
+    if removed_items in inventory:
+        inventory[removed_items] -= 1
+        if inventory[removed_items] <= 0:
+            del inventory[removed_items]
 
 
 def print_table(inventory, order=None):
@@ -24,8 +33,10 @@ def print_table(inventory, order=None):
     Display the contents of the inventory in an ordered, well-organized table with
     each column right-aligned.
     """
-
-    pass
+    DIVIDER = '-----------------'
+    HEADER = 'item name | count'
+    print(f'{DIVIDER}\n{HEADER}\n{DIVIDER}')
+    
 
 
 def import_inventory(inventory, filename):
